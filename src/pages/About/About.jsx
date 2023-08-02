@@ -1,7 +1,13 @@
 import React from "react";
+import ResponsiveAppBar from "../../components/Navbar/ResponsiveAppBar";
 
 const About = () => {
-  return <div>Here I will add About component.</div>;
+  return (
+    <>
+      <ResponsiveAppBar />
+      <h1>This is About me.</h1>
+    </>
+  );
 };
 
 export default About;
