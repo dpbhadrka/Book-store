@@ -12,9 +12,16 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
+} from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-const pages = ["Home", "Theme", "Cart", "About", "Login"];
+const pages = ["Home", "Cart", "About", "Login"];
 const settings = ["Profile", "Account", "Logout"];
 
 function ResponsiveAppBar() {
@@ -22,20 +29,28 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [activeMenu, setActiveMenu] = React.useState("Home");
 
+  // For theme
+  const { mode, setMode } = useColorScheme("dark");
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // const handleCloseUserMenu = () => {
+  //   setAnchorElUser(null);
+  // };
 
   return (
     <AppBar position="static">
@@ -151,6 +166,7 @@ function ResponsiveAppBar() {
           >
             {pages.map((page) => (
               <Link
+                key={page}
                 sx={{ all: "unset" }}
                 to={page === "Home" ? "/" : `/${page.toLowerCase()}`}
               >
@@ -164,7 +180,22 @@ function ResponsiveAppBar() {
               </Link>
             ))}
           </Box>
-
+          <Box
+            sx={{
+              width: "5%",
+              textAlign: "center",
+            }}
+            variant="outlined"
+            onClick={() => {
+              if (mode === "light") {
+                setMode("dark");
+              } else {
+                setMode("light");
+              }
+            }}
+          >
+            {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+          </Box>
           {/* <Box sx={{ flexGrow: 0, width: "15%", textAlign: "right" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
