@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, About, NotFound, ModeSwitcher } from "../pages/index.js";
+import { Home, About, NotFound } from "../pages/index.js";
 import Login from "../pages/LoginPage/LoginPage.jsx";
 
 const AllRoutes = () => {

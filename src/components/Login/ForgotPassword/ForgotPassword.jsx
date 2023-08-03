@@ -36,20 +36,19 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn({ whichForm }) {
-  const navigateToHome = useNavigate();
+export default function ForgotPassword({ whichForm }) {
+  //   const navigateToHome = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    toast.success("Welcome", {
+    toast.success("Password sent on " + data.get("email"), {
       theme: "light",
     });
     console.log({
       email: data.get("email"),
-      password: data.get("password"),
     });
     setTimeout(() => {
-      navigateToHome("/");
+      whichForm("signin");
     }, 2500);
   };
 
@@ -83,52 +82,30 @@ export default function SignIn({ whichForm }) {
               autoComplete="off"
               autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="off"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Send Password
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link
-                  onClick={() => {
-                    whichForm("forgotPassword");
-                  }}
-                  sx={{ cursor: "pointer" }}
-                  variant="body2"
-                >
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  onClick={() => whichForm("signup")}
-                  variant="body2"
-                  sx={{ cursor: "pointer" }}
-                >
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
+        <Grid container>
+          <Grid item xs>
+            <Link
+              onClick={() => {
+                whichForm("signin");
+              }}
+              sx={{ cursor: "pointer" }}
+              variant="body2"
+            >
+              Back to Sign in?
+            </Link>
+          </Grid>
+        </Grid>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
       <ToastContainer position="top-center" autoClose={1300} />

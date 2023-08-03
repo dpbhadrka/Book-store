@@ -1,6 +1,6 @@
 import SignIn from "../../components/Login/SignIn/SignIn";
 import SignUp from "../../components/Login/SignUp/SignUp";
-
+import ForgotPassword from "../../components/Login/ForgotPassword/ForgotPassword";
 import React, { useState } from "react";
 
 export default function Login() {
@@ -12,8 +12,10 @@ export default function Login() {
     <>
       {form === "signin" ? (
         <SignIn whichForm={whichForm} />
-      ) : (
+      ) : form === "signup" ? (
         <SignUp whichForm={whichForm} />
+      ) : (
+        <ForgotPassword whichForm={whichForm} />
       )}
     </>
   );

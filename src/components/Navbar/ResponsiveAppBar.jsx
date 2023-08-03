@@ -7,9 +7,7 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -22,12 +20,9 @@ import {
 import { Link } from "react-router-dom";
 
 const pages = ["Home", "Cart", "About", "Login"];
-const settings = ["Profile", "Account", "Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [activeMenu, setActiveMenu] = React.useState("Home");
 
   // For theme
   const { mode, setMode } = useColorScheme("dark");

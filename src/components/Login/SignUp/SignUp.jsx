@@ -36,7 +36,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp({ whichForm }) {
-  const handleSubmit = (event) => {
+  const handleSubmitInSignUp = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(defaultTheme);
@@ -71,7 +71,7 @@ export default function SignUp({ whichForm }) {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmitInSignUp} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
