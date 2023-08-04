@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -40,12 +41,26 @@ export default function SignUp({ whichForm }) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(defaultTheme);
-    toast.success("Welcome " + data.get("firstName"), {
-      theme: "light",
-    });
-    setTimeout(() => {
-      whichForm("signin");
-    }, 4000);
+
+    axios
+      .post("http://localhost:8080/api/users/userRegister", {
+        username: data.get("firstName") + data.get("lastName"),
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+      .then((response) => {
+        console.log(response.data.data);
+        if (response.data.data == "User Created") {
+          toast.success("Welcome " + data.get("firstName"), {
+            theme: "light",
+          });
+          setTimeout(() => {
+            whichForm("signin");
+          }, 4000);
+        } else {
+          toast.error(response.data.data);
+        }
+      });
 
     console.log({
       email: data.get("email"),

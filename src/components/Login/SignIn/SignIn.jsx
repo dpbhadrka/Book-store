@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -41,16 +42,37 @@ export default function SignIn({ whichForm }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    toast.success("Welcome", {
-      theme: "light",
-    });
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-    setTimeout(() => {
-      navigateToHome("/");
-    }, 2500);
+    // toast.success("Welcome", {
+    //   theme: "light",
+    // });
+    const email = data.get("email");
+    const password = data.get("password");
+
+    axios
+      .post("http://localhost:8080/api/users/userLogin", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        if (response.data.data == "Login Successful") {
+          toast.success(response.data.data);
+          // toast.success("Welcome " + data.get("firstName"), {
+          //   theme: "light",
+          // });
+          setTimeout(() => {
+            whichForm("signin");
+          }, 4000);
+          setTimeout(() => {
+            navigateToHome("/");
+          }, 2500);
+        } else {
+          toast.error("Register first.");
+        }
+      });
+    // console.log({
+    //    email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
 
   return (
