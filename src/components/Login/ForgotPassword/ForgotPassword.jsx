@@ -34,12 +34,16 @@ function Copyright(props) {
   );
 }
 
+// Forgot Password send the password to the provided mail if the mail exist on the database.
+
 const defaultTheme = createTheme();
 
 export default function ForgotPassword({ whichForm }) {
-  //   const navigateToHome = useNavigate();
+  // Sent a password to the given mail.
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Taking the Email from the form.
     const data = new FormData(event.currentTarget);
     toast.success("Password sent on " + data.get("email"), {
       theme: "light",

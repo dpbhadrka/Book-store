@@ -1,3 +1,7 @@
+// The signUp page for the registering user.
+// We send a username as the "Firstname + Lastname", email and password using Post request to the database.
+// After SignUp successful user can redirect to the SignIn page.
+
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -33,15 +37,18 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignUp({ whichForm }) {
+  // handle submit when user click on the SignUp button.
   const handleSubmitInSignUp = (event) => {
     event.preventDefault();
+
+    // Get the data from the form.
     const data = new FormData(event.currentTarget);
     console.log(defaultTheme);
 
+    // Sending Post request for storing the data in databse.
     axios
       .post("http://localhost:8080/api/users/userRegister", {
         username: data.get("firstName") + data.get("lastName"),
@@ -54,6 +61,8 @@ export default function SignUp({ whichForm }) {
           toast.success("Welcome " + data.get("firstName"), {
             theme: "light",
           });
+
+          // After successful creating the account user auto redirect to the signIn page.
           setTimeout(() => {
             whichForm("signin");
           }, 4000);
@@ -62,10 +71,10 @@ export default function SignUp({ whichForm }) {
         }
       });
 
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
 
   return (

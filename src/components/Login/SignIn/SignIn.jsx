@@ -1,3 +1,7 @@
+// SignIn Page which takes Email and Password for login purpose.
+// If given credentials are right/true then we redirect to Home page else giving error like wrong credentials or Register first.
+// Also we redirect to SignUp page for creating account.
+
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,7 +17,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -38,16 +41,19 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn({ whichForm }) {
+  // For redirecting to home page When signIn successful.
   const navigateToHome = useNavigate();
+
+  // handle submit when user click on the SignIn button.
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Geting the data from the form.
     const data = new FormData(event.currentTarget);
-    // toast.success("Welcome", {
-    //   theme: "light",
-    // });
     const email = data.get("email");
     const password = data.get("password");
 
+    // Sending post request for checking the credentials and getting response.
     axios
       .post("http://localhost:8080/api/users/userLogin", {
         email: email,
@@ -56,21 +62,17 @@ export default function SignIn({ whichForm }) {
       .then((response) => {
         if (response.data.data == "Login Successful") {
           toast.success(response.data.data);
-          // toast.success("Welcome " + data.get("firstName"), {
-          //   theme: "light",
-          // });
-          setTimeout(() => {
-            whichForm("signin");
-          }, 4000);
+
+          // After successful login we redirect user to Home page.
           setTimeout(() => {
             navigateToHome("/");
           }, 2500);
         } else {
-          toast.error("Register first.");
+          toast.error("Do Register first or Wrong credentials.");
         }
       });
     // console.log({
-    //    email: data.get("email"),
+    //   email: data.get("email"),
     //   password: data.get("password"),
     // });
   };
