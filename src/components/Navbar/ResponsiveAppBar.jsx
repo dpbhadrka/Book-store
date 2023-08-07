@@ -8,6 +8,8 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import { Tooltip } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -19,9 +21,13 @@ import {
 } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-const pages = ["Home", "Cart", "About", "Login"];
+const pages = ["Home", "Books", "Cart", "About", "Login"];
+const settings = ["Profile", "LogOut"];
 
+// The actual ResponsiveAppBar component
 function ResponsiveAppBar() {
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   // For theme
@@ -35,25 +41,30 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
+  // The actual thing which is returning in ResponnsiveAppBar
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* Book Icon */}
           <AutoStoriesIcon
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
           />
+
+          {/* BookHub Title */}
           <Typography
             variant="h6"
             noWrap
@@ -72,6 +83,8 @@ function ResponsiveAppBar() {
             BookHub
           </Typography>
 
+          {/* Navbar for small devices */}
+          {/* Menu icon for small devices for accessing the menu items. */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -83,6 +96,7 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -131,9 +145,15 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+
+          {/* Navbar for the big screen (a simple navigation bar).*/}
+
+          {/* BookHub Icon */}
           <AutoStoriesIcon
             sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
           />
+
+          {/* BookHub Title */}
           <Typography
             variant="h5"
             noWrap
@@ -151,12 +171,15 @@ function ResponsiveAppBar() {
           >
             BookHub
           </Typography>
+
+          {/* Navbar menu item for big screen. */}
           <Box
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: "right",
+              justifyContent: "center",
               gap: "1.5rem",
+              mr: "3rem",
             }}
           >
             {pages.map((page) => (
@@ -175,12 +198,15 @@ function ResponsiveAppBar() {
               </Link>
             ))}
           </Box>
-          <Box
+          {/* Theme changing icon. */}
+          <Typography
             sx={{
-              width: "5%",
+              all: "unset",
+              display: "flex",
               textAlign: "center",
+              alignItems: "center",
             }}
-            variant="outlined"
+            variant="text"
             onClick={() => {
               if (mode === "light") {
                 setMode("dark");
@@ -190,43 +216,74 @@ function ResponsiveAppBar() {
             }}
           >
             {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
-          </Box>
-          {/* <Box sx={{ flexGrow: 0, width: "15%", textAlign: "right" }}>
+          </Typography>
+
+          {/* Search */}
+          {/* <Box
+            sx={{
+              flexGrow: 0.3,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            <input
+              style={{
+                all: "unset",
+                border: "1px solid #ffff",
+                padding: "10px",
+                color: "#fff",
+                borderRadius: "2rem",
+              }}
+              placeholder="Search"
+              type="search"
+              name="search"
+              id="searchBook"
+            />
+          </Box> */}
+          {/* Profile section */}
+          {/* <Box sx={{ flexGrow: 0, width: "15%", textAlign: "right" }}></Box> */}
+          {/* <Box>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
-                  style={{
-                    color: "black",
-                    backgroundColor: "#1976d2",
-                    border: "2px solid #fff",
+                  sx={{
+                    background: "none",
+                    border: "1px solid white",
+                    color: "white",
                   }}
                   alt=""
                 />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
+          </Box>
+          <Menu
+            sx={{ mt: "45px" }}
+            id="menu-appbar"
+            anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
+          >
+            {settings.map((setting) => (
+              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <Typography
+                  sx={
+                    mode === "light" ? { color: "black" } : { color: "white" }
+                  }
+                  textAlign="center"
+                >
+                  {setting}
+                </Typography>
+              </MenuItem>
+            ))}
+          </Menu> */}
         </Toolbar>
       </Container>
     </AppBar>

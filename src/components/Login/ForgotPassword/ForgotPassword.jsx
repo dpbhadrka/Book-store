@@ -13,8 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -45,6 +44,18 @@ export default function ForgotPassword({ whichForm }) {
 
     // Taking the Email from the form.
     const data = new FormData(event.currentTarget);
+
+    axios
+      .post("http://localhost:8080/api/users/forgotPassword", {
+        email: data.get("email"),
+      })
+      .then((response) => {
+        if (response.data.data === "UserExists") {
+          console.log(response.data.password);
+        } else {
+          toast.error("Email not found.");
+        }
+      });
     toast.success("Password sent on " + data.get("email"), {
       theme: "light",
     });
