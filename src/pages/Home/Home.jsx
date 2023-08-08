@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ResponsiveAppBar from "../../components/Navbar/ResponsiveAppBar";
 import axios from "axios";
+import Footer from "../../components/Footer/Footer";
+import Search from "../../components/Search/Search";
 // import { response } from "express";
 const Home = () => {
   const [data, setData] = useState([]);
@@ -14,7 +16,9 @@ const Home = () => {
   return (
     <>
       <ResponsiveAppBar />
+      <Search />
       <h1>This is home page.</h1>
+      <Footer />
     </>
   );
 };

@@ -1,0 +1,44 @@
+.card {
+  width: 580px;
+  margin: 0 auto;
+}
+
+.card p {
+  margin: 0;
+  padding: 10px 0px 0px 20px;
+  text-transform: capitalize;
+}
+.card-container {
+  box-sizing: border-box;
+  width: 100%;
+  /* background-color: #ecb159; */
+  padding: 15px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  display: flex;
+  flex-direction: row;
+  margin: 2rem auto;
+}
+
+.cardImage img {
+  width: 200px;
+  height: 10rem;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.bookInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  margin: 0 auto;
+  width: 90%;
+  text-align: justify;
+}
+
+.priceAndCart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
