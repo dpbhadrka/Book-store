@@ -1,6 +1,6 @@
 .card {
-  width: 580px;
   margin: 0 auto;
+  width: 580px;
 }
 
 .card p {
@@ -11,13 +11,12 @@
 .card-container {
   box-sizing: border-box;
   width: 100%;
-  /* background-color: #ecb159; */
   padding: 15px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   display: flex;
   flex-direction: row;
-  margin: 2rem auto;
+  margin: 1rem auto;
 }
 
 .cardImage img {
@@ -27,11 +26,17 @@
   border: 1px solid #000;
 }
 
+.cardImage p {
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
 .bookInfo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
+  justify-content: space-around;
+  gap: 1rem;
   margin: 0 auto;
   width: 90%;
   text-align: justify;
@@ -41,4 +46,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+}
+
+#bookDescription {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 1.3rem;
+  box-sizing: border-box;
+  line-height: 1em;
+  max-height: 1.5 * 3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.addToCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
