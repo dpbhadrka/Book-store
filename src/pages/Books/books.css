@@ -1,0 +1,16 @@
+.bookSection {
+  text-align: center;
+  margin: 40px 0px;
+  color: var(--thirty-pr-color);
+}
+
+.bookSection-title {
+  font-size: 2rem;
+}
+
+.bookSection p {
+  font-size: 1.3rem;
+  width: 50%;
+  margin: 15px auto;
+  color: var(--font-color);
+}
