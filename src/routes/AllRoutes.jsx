@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, About, NotFound } from "../pages/index.js";
 import Login from "../pages/LoginPage/LoginPage.jsx";
 import Books from "../pages/Books/Books.jsx";
+import Cart from "../pages/Cart/Cart.jsx";
 
 const AllRoutes = () => {
   return (
@@ -10,6 +11,7 @@ const AllRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/books" element={<Books />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
