@@ -1,0 +1,56 @@
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px auto;
+  height: 4rem;
+  padding: 0px 15px;
+  background-color: var(--thirty-pr-color);
+}
+
+.navbar-container p {
+  margin: 0;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  color: var(--sixty-pr-color);
+  /* color: var(--thirty-pr-color); */
+}
+
+.option {
+  all: unset;
+  font-size: 1.2rem;
+  display: flex;
+  gap: 2.3rem;
+  align-items: center;
+}
+
+.option span {
+  text-transform: uppercase;
+  color: var(--sixty-pr-color);
+  /* color: var(--thirty-pr-color); */
+  cursor: pointer;
+}
+
+.option:hover > :not(:hover) {
+  opacity: 0.05;
+}
+
+.themeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: var(--thirty-pr-color); */
+}
+
+.active {
+  background: red;
+}
+.not {
+  background-color: aqua;
+}

@@ -12,12 +12,15 @@
 }
 
 .search input {
-  box-sizing: border-box;
   all: unset;
+  box-sizing: border-box;
   background-color: transparent;
-  border: 1px solid rgb(22, 4, 68);
+  border: 2px solid var(--thirty-pr-color);
   width: 100%;
+  border-radius: 15px;
+  color: var(--thirty-pr-color);
   padding: 5px 0px 5px 5px;
+  font-size: 1.5rem;
 }
 
 /* .searchButton {
@@ -38,4 +41,11 @@
   /* gap: 1.5rem; */
   margin-top: 1.2rem;
   flex-wrap: wrap;
+}
+
+.searchResult {
+  text-align: center;
+  font-size: 1.7rem;
+  color: var(--thirty-pr-color);
+  /* text-decoration: underline; */
 }

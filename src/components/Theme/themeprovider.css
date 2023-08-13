@@ -1,0 +1,25 @@
+.theme-container {
+  position: relative;
+}
+
+.themlist {
+  text-transform: capitalize;
+  position: absolute;
+  padding: 0px 15px;
+  text-align: center;
+  top: 110%;
+  right: 100%;
+  cursor: pointer;
+  border: 2px solid var(--ten-pr-color);
+  background-color: var(--sixty-pr-color);
+  transition: all 1s ease;
+}
+
+.try {
+  transition: all 1s ease;
+  display: none;
+}
+.themlist p {
+  color: var(--thirty-pr-color);
+  margin: 10px;
+}

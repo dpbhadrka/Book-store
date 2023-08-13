@@ -1,11 +1,11 @@
 import React from "react";
-import ResponsiveAppBar from "../../components/Navbar/ResponsiveAppBar";
+import Navbar from "../../components/Navbar/Navbar";
 
 const About = () => {
   return (
     <>
-      <ResponsiveAppBar />
-      <h1>This is About me.</h1>
+      <Navbar />
+      <h1 style={{ color: "var(--thirty-pr-color)" }}>This is About me.</h1>
     </>
   );
 };

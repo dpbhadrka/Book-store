@@ -1,54 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./search.css";
-import axios from "axios";
 import Card from "../Card/Card";
+import { Context } from "../../context/ContextProvider";
+import { ToastContainer } from "react-toastify";
 
-export default function Search() {
-  const [bookList, setbookList] = React.useState([]);
+export default function Search(props) {
+  const { books, setBooks } = useContext(Context);
   const [filteredResults, setfilteredResults] = React.useState([]);
-  useEffect(() => {
-    axios
-      .get("https://book-e-sell-node-api.vercel.app/api/book/all")
-      .then((res) => {
-        // console.table(res.data.result);
-        setbookList(res.data.result);
-      });
-  }, []);
+  const [resultOfSearch, setRusultOfSearch] = useState(false);
 
-  const [searchQuery, setSearchQuery] = useState("");
   const handleSearch = (query) => {
-    setSearchQuery(query);
     if (query) {
       console.log("Query: ", query);
       // Filter the items based on the search query
-      const searchedResult = bookList.filter((item) =>
+      const searchedResult = books.filter((item) =>
         item.name.toLowerCase().includes(query.toLowerCase())
       );
-      setfilteredResults(searchedResult);
+      if (searchedResult.length === 0) {
+        setRusultOfSearch(true);
+        setfilteredResults(searchedResult);
+      } else {
+        setfilteredResults(searchedResult);
+        setRusultOfSearch(false);
+        console.log(searchedResult.length);
+      }
     } else {
-      const searchedResult = [];
-      setfilteredResults(searchedResult);
+      setRusultOfSearch(false);
+      setfilteredResults([]);
     }
   };
   return (
     <>
-      <div className="search-container">
+      <div className="search-container" style={props.style}>
         <div className="search">
           <input
             type="search"
             id="header-search"
-            placeholder="Books"
+            placeholder="what are you looking for...."
             autoComplete="off"
             onChange={(e) => {
-              handleSearch(e.target.value);
+              handleSearch(e.target.value.trim());
             }}
           />
         </div>
-        {/* <div className="searchButton" onClick={handleSearch}>
-          Search
-        </div> */}
       </div>
-      <div className="allBooksContainer">
+      <div
+        className="searchResult"
+        style={{ display: resultOfSearch === false ? "none" : "block" }}
+      >
+        Sorry !! Book is not avilabale.
+      </div>
+      <div
+        style={{ display: resultOfSearch === false ? "block" : "none" }}
+        className="allBooksContainer"
+      >
         <div className="allBooksContainer">
           {filteredResults.map((book, index) => (
             <Card
@@ -61,6 +66,16 @@ export default function Search() {
             />
           ))}
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          theme="dark"
+          pauseOnHover
+        />
       </div>
     </>
   );
