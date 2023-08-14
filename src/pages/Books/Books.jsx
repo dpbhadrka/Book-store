@@ -1,12 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Search from "../../components/Search/Search";
 import { Context } from "../../context/ContextProvider";
 import Card from "../../components/Card/Card";
 import "./books.css";
+import axios from "axios";
 
 export default function Books() {
-  const { books, setbooks } = useContext(Context);
+  const { books, setBooks } = useContext(Context);
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8080/api/books/getBooks").then((res) => {
+      setBooks(res.data.data);
+      console.log(res.data.data);
+    });
+  }, []);
   return (
     <div>
       <Navbar />
@@ -26,7 +33,7 @@ export default function Books() {
               name={book.name}
               price={book.price}
               description={book.description}
-              path={book.base64image}
+              path={book.image}
               category={book.category}
             />
           ))}

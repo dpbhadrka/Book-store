@@ -1,0 +1,48 @@
+.fieldSet {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+  width: 55%;
+  margin: 2rem auto;
+  padding: 3rem 0rem;
+  font-size: 1.3rem;
+}
+
+.bookProperty {
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.bookProperty input {
+  all: unset;
+  border: 1px solid var(--thirty-pr-color);
+  padding: 10px;
+  width: 50%;
+}
+
+.bookDescription input {
+  width: 100%;
+  padding: 15px;
+}
+
+.submitButton {
+  width: 70%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.submitButton button {
+  all: unset;
+  width: 100%;
+  border: 1px solid var(--thirty-pr-color);
+  padding: 10px;
+  background-color: var(--thirty-pr-color);
+  color: var(--sixty-pr-color);
+}

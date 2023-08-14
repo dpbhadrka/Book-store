@@ -61,7 +61,7 @@ export default function Search(props) {
               name={book.name}
               price={book.price}
               description={book.description}
-              path={book.base64image}
+              path={book.image}
               category={book.category}
             />
           ))}

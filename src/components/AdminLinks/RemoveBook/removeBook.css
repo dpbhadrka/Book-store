@@ -1,0 +1,30 @@
+.removeList {
+  display: flex;
+  width: 60%;
+  margin: 2rem auto;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.remove-delete-Botton {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  border: 1px solid var(--thirty-pr-color);
+  margin: 7px 0px;
+  padding: 0px 10px;
+  align-items: center;
+}
+
+.remove-delete-Botton p {
+  color: var(--font-color);
+}
+
+.remove-delete-Botton button {
+  color: var(--sixty-pr-color);
+  font-size: 1.1rem;
+  padding: 5px 10px;
+  background-color: var(--thirty-pr-color);
+  cursor: pointer;
+  margin: 0;
+}

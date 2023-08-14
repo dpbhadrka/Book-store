@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./themeprovider.css";
+import { Context } from "../../context/ContextProvider";
 
 const ThemeProvider = () => {
-  const [theme, setTheme] = useState("light");
+  const { theme, setTheme } = useContext(Context);
   const [isThemeListVisible, setThemeListVisible] = useState(false);
   const themeNames = ["light", "dark", "orange", "purple", "blue"];
   useEffect(() => {

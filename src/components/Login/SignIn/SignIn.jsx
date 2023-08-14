@@ -19,6 +19,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Context } from "../../../context/ContextProvider";
+import { useContext } from "react";
 
 function Copyright(props) {
   return (
@@ -43,6 +45,7 @@ const defaultTheme = createTheme();
 export default function SignIn({ whichForm }) {
   // For redirecting to home page When signIn successful.
   const navigateToHome = useNavigate();
+  const { userRole, setUserRole } = useContext(Context);
 
   // handle submit when user click on the SignIn button.
   const handleSubmit = (event) => {
@@ -62,11 +65,20 @@ export default function SignIn({ whichForm }) {
       .then((response) => {
         if (response.data.data == "Login Successful") {
           toast.success(response.data.data);
+          setUserRole(response.data.role);
+          console.log(response.data.role);
 
           // After successful login we redirect user to Home page.
-          setTimeout(() => {
+          if (response.data.role === "Admin") {
             navigateToHome("/");
-          }, 2500);
+          } else if (response.data.role === "User") {
+            setTimeout(() => {
+              navigateToHome("/");
+            }, 2500);
+          } else {
+            response.preventDefault();
+            console.log("this is an error.");
+          }
         } else {
           toast.error("Do Register first or Wrong credentials.");
         }

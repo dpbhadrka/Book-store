@@ -52,8 +52,10 @@ export default function SignUp({ whichForm }) {
     axios
       .post("http://localhost:8080/api/users/userRegister", {
         username: data.get("firstName") + data.get("lastName"),
+        name: data.get("firstName") + " " + data.get("lastName"),
         email: data.get("email"),
         password: data.get("password"),
+        role: data.get("role"),
       })
       .then((response) => {
         console.log(response.data.data);
@@ -126,6 +128,17 @@ export default function SignUp({ whichForm }) {
                   label="Email Address"
                   name="email"
                   type="email"
+                  autoComplete="off"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="role"
+                  label="Select Role(Admin/User)"
+                  name="role"
+                  type="text"
                   autoComplete="off"
                 />
               </Grid>

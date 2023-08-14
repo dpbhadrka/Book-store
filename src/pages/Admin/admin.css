@@ -1,0 +1,24 @@
+.adminAccessLinks {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  background-color: var(--thirty-pr-color);
+  padding: 10px;
+  transition: all 1s ease;
+}
+
+.adminAccessLinks span {
+  cursor: pointer;
+  color: var(--sixty-pr-color);
+  font-size: 1.4rem;
+}
+
+.active {
+  /* text-decoration: underline; */
+  border-bottom: 2px solid var(--sixty-pr-color);
+}
