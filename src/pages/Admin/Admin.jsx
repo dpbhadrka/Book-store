@@ -4,6 +4,7 @@ import "./admin.css";
 import AddBook from "../../components/AdminLinks/AddBook/AddBook";
 import RemoveBook from "../../components/AdminLinks/RemoveBook/RemoveBook";
 import RemoveUser from "../../components/AdminLinks/RemoveUser/RemoveUser";
+import EditBooks from "../../components/AdminLinks/EditBooks/EditBooks.jsx";
 
 export default function Admin() {
   const [accessLink, setAccessLink] = useState("addBook");
@@ -28,7 +29,14 @@ export default function Admin() {
         >
           Romove Book
         </span>
-
+        <span
+          className={accessLink === "editBooks" ? "active" : ""}
+          onClick={() => {
+            setAccessLink("editBooks");
+          }}
+        >
+          Edit Books
+        </span>
         <span
           className={accessLink === "removeUser" ? "active" : ""}
           onClick={() => {
@@ -44,8 +52,10 @@ export default function Admin() {
           <AddBook />
         ) : accessLink === "removeBook" ? (
           <RemoveBook />
-        ) : (
+        ) : accessLink === "removeUser" ? (
           <RemoveUser />
+        ) : (
+          <EditBooks />
         )}
       </div>
     </div>

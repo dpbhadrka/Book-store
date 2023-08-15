@@ -1,0 +1,58 @@
+.editBooks {
+  border: 2px solid var(--thirty-pr-color);
+  margin: 10px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.editBook-container {
+  border: none;
+}
+
+.editBookInformation {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 92%;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  padding-bottom: 30px;
+}
+
+.editBookInformation p {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.editBookInformation input {
+  all: unset;
+  font-size: 1.3rem;
+  border: 1px solid var(--thirty-pr-color);
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.editBookInformation img {
+  height: 200px;
+  width: 200px;
+}
+
+.disFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.disFlex div {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
